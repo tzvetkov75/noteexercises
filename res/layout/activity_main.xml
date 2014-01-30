@@ -18,13 +18,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.00" >
+            android:layout_height="0dp"
+            android:layout_weight="1" >
 
             <LinearLayout
                 android:id="@+id/linearLayout1"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="301dp"
+                android:layout_weight="1"
                 android:orientation="vertical" >
 
                 <TextView
@@ -53,7 +54,6 @@
 
                         <requestFocus />
                     </EditText>
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -73,7 +73,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10" />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -93,7 +92,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10" />
-
                 </LinearLayout>
 
                 <TextView
@@ -112,8 +110,7 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="355dp"
-                android:layout_weight="0.15"
+                android:layout_height="298dp"
                 android:orientation="vertical" >
 
                 <Button
@@ -150,33 +147,34 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="0dp"
+            android:layout_weight="1" >
 
             <Button
                 android:id="@+id/buttonNewTraining"
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.00"
+                android:layout_weight="1"
                 android:text="@string/buttonNewTraining" />
 
             <Button
                 android:id="@+id/buttonStopTraining"
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.00"
+                android:layout_weight="1"
                 android:text="@string/buttonStopTraining" />
 
             <Button
                 android:id="@+id/buttonStore"
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.00"
+                android:layout_weight="1"
                 android:text="@string/buttonStore" />
         </LinearLayout>
-        
+
     </LinearLayout>
 
 </RelativeLayout>
