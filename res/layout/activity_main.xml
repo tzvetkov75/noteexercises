@@ -24,99 +24,128 @@
             <LinearLayout
                 android:id="@+id/linearLayout1"
                 android:layout_width="wrap_content"
-                android:layout_height="241dp"
+                android:layout_height="301dp"
                 android:orientation="vertical" >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/hello_world" />
+                    android:layout_weight="55"
+                    android:text="@string/general" />
 
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
-
-                <EditText
-                    android:id="@+id/editText1"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPostalAddress" />
+                    android:layout_weight="55" >
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    <TextView
+                        android:id="@+id/exerciese"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/textViewExercise" />
 
-                <EditText
-                    android:id="@+id/editText2"
+                    <EditText
+                        android:id="@+id/editExerciese"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10" >
+
+                        <requestFocus />
+                    </EditText>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:layout_weight="55" >
 
-                <EditText
-                    android:id="@+id/editText3"
-                    android:layout_width="266dp"
-                    android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/viewTextRepetition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/textViewRepetitions" />
+
+                    <EditText
+                        android:id="@+id/editTextWeight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="55" >
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/textViewWeight" />
+
+                    <EditText
+                        android:id="@+id/editTextWeight"
+                        android:layout_width="266dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10" />
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="@string/textViewHistory" />
 
-                <TextView
-                    android:id="@+id/textView5"
+                <ListView
+                    android:id="@+id/listViewHistory"
                     android:layout_width="match_parent"
-                    android:layout_height="57dp"
-                    android:text="Small Text"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-                
+                    android:layout_height="108dp"
+                    android:layout_weight="8518857216.00" >
+                </ListView>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="355dp"
+                android:layout_weight="0.15"
                 android:orientation="vertical" >
 
                 <Button
-                    android:id="@+id/button1"
+                    android:id="@+id/button10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
-
-                <Button
-                    android:id="@+id/button2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Button" />
-
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Button" />
-
-                <Button
-                    android:id="@+id/button4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="@string/button10" />
 
                 <Button
                     android:id="@+id/button5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="@string/button5" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button2" />
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button1" />
+
+                <Button
+                    android:id="@+id/button0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button0" />
             </LinearLayout>
-        
         </LinearLayout>
 
         <LinearLayout
@@ -124,18 +153,28 @@
             android:layout_height="wrap_content" >
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/buttonNewTraining"
+                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.00"
-                android:text="Button" />
+                android:text="@string/buttonNewTraining" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/buttonStopTraining"
+                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.00"
-                android:text="Button" />
+                android:text="@string/buttonStopTraining" />
+
+            <Button
+                android:id="@+id/buttonStore"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.00"
+                android:text="@string/buttonStore" />
         </LinearLayout>
         
     </LinearLayout>
