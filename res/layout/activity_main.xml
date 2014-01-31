@@ -68,11 +68,14 @@
                         android:text="@string/textViewRepetitions" />
 
                     <EditText
-                        android:id="@+id/editTextWeight"
+                        android:id="@+id/editTextRepetitions"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:ems="10" />
+                        android:ems="10"
+                        android:editable="false"
+                        android:onClick="HandleClickRepWeight" />
+                    
                 </LinearLayout>
 
                 <LinearLayout
@@ -87,11 +90,13 @@
                         android:text="@string/textViewWeight" />
 
                     <EditText
-                        android:id="@+id/editTextWeight"
+                        android:id="@+id/exitTextWeight"
                         android:layout_width="266dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:ems="10" />
+                        android:ems="10"
+                        android:editable="false"
+                        android:onClick="HandleClickRepWeight" />
                 </LinearLayout>
 
                 <TextView
@@ -117,30 +122,40 @@
                     android:id="@+id/button10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="HandleClickAddButton"
+                    android:tag="10"
                     android:text="@string/button10" />
 
                 <Button
                     android:id="@+id/button5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="HandleClickAddButton"
+                    android:tag="5"
                     android:text="@string/button5" />
 
                 <Button
                     android:id="@+id/button2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="HandleClickAddButton"
+                    android:tag="2"
                     android:text="@string/button2" />
 
                 <Button
                     android:id="@+id/button1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="1"
+                    android:onClick="HandleClickAddButton"
                     android:text="@string/button1" />
 
                 <Button
                     android:id="@+id/button0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="HandleClickAddButton"
+                    android:tag="0"
                     android:text="@string/button0" />
             </LinearLayout>
         </LinearLayout>
@@ -174,7 +189,6 @@
                 android:layout_weight="1"
                 android:text="@string/buttonStore" />
         </LinearLayout>
-
     </LinearLayout>
 
 </RelativeLayout>
