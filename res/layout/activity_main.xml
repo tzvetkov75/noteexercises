@@ -165,22 +165,6 @@
             android:layout_weight="1" >
 
             <Button
-                android:id="@+id/buttonNewTraining"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/buttonNewTraining" />
-
-            <Button
-                android:id="@+id/buttonStopTraining"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/buttonStopTraining" />
-
-            <Button
                 android:id="@+id/buttonStore"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="0dp"
