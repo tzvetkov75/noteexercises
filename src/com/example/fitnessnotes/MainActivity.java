@@ -17,6 +17,7 @@ public class MainActivity extends Activity {
 
 	private EditText edRep, edWei, ed;
 	private int tempInt = 0;
+	private DatabaseHelper database;
 	 
 
 	@Override
@@ -44,6 +45,19 @@ public class MainActivity extends Activity {
                 return false;
             }
         });	
+	    
+	    
+	    database = new DatabaseHelper(this);
+	    database.open();
+
+	    List<Serie> values = database.getAllComments();
+
+	    // use the SimpleCursorAdapter to show the
+	    // elements in a ListView
+	    ArrayAdapter<Comment> adapter = new ArrayAdapter<Comment>(this,
+	        android.R.layout.simple_list_item_1, values);
+	    setListAdapter(adapter);
+	  }
 
 	}
 
@@ -62,7 +76,7 @@ public class MainActivity extends Activity {
 		
 // if either Repetion or Weight is selected (double clicked) -> use repetition
 		if (ed == null) {
-			Toast.makeText(this, "no field set, using Repetitions", 2).show();
+			Toast.makeText(this, "no field set, using Repetitions", Toast.LENGTH_SHORT).show();
 			ed = (EditText) findViewById(R.id.editTextRepetitions);
 		}
 		
@@ -70,7 +84,7 @@ public class MainActivity extends Activity {
 		
 		if (btn.getTag().toString().equals("0")) {
 			ed.setText("0");
-			Toast.makeText(this, "set to zero", 2).show();
+			Toast.makeText(this, "set to zero", Toast.LENGTH_SHORT).show();
 			
 		} else {
 			
@@ -87,14 +101,8 @@ public class MainActivity extends Activity {
 		}		
 	}
 
-	// This handler reacts on buttons Weight and Repetition
-	
-	public void HandleClickRepWeight(View arg0) {
-//		ed = (EditText) arg0;
-//		Toast.makeText(this, "edit field set", 2).show();
-		
-		
-//		ed.getBackground().setColorFilter(Color.parseColor("#00ff00"), PorterDuff.Mode.DARKEN);
+	// This handler reacts on buttons store
+	public void HandleClickStore(View arg0) {
 	}
 
 }
