@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 	private EditText edRep, edWei, edName, ed;
 	private int tempInt = 0;
 	private DatabaseHelper database;
-	final ListView listviewHistory = (ListView) findViewById(R.id.listViewHistory);
+	private ListView listviewHistory;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ public class MainActivity extends Activity {
 		edName = (EditText) findViewById(R.id.editExerciese);
 		edRep = (EditText) findViewById(R.id.editTextRepetitions);
 		edWei = (EditText) findViewById(R.id.exitTextWeight);
+		listviewHistory = (ListView) findViewById(R.id.listViewHistory);
 
 		edRep.setOnTouchListener(new View.OnTouchListener() {
 			public boolean onTouch(View arg0, MotionEvent arg1) {
@@ -105,12 +106,8 @@ public class MainActivity extends Activity {
 	// This handler reacts on buttons store
 	public void HandleClickStore(View arg0) {
 
-		Serie serie = new Serie();
-
-		serie.setName(edName.getText().toString());
-		serie.setRepetition(Integer.parseInt(edRep.getText().toString()));
-		serie.setWeight(Integer.parseInt(edWei.getText().toString()));
-
+		Serie serie = new Serie(edName.getText().toString(), Integer.parseInt(edRep.getText().toString()),Integer.parseInt(edWei.getText().toString()));  
+		
 		database.storeSerie(serie);
 		updateHistory();
 	}
