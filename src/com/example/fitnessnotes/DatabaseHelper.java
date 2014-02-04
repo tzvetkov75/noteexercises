@@ -16,7 +16,7 @@ public class DatabaseHelper {
 	private SQLiteDatabase database;
 	private MySQLiteHelper dbHelper;
 	private final static String[] ALL_COLUMNS = { "date", "name",
-			"repetitions", "wieght" };
+			"repetition", "weight", "trainingId" };
 
 	public DatabaseHelper(Context context) {
 
@@ -56,7 +56,7 @@ public class DatabaseHelper {
 		 
 		    ContentValues values = new ContentValues();
 		    
-		    values.put("date",serie.getDate().toString());
+		    values.put("date",serie.getDate().getTime());
 		    values.put("name", serie.getName());
 		    values.put("repetition", serie.getRepetition());
 		    values.put("weight", serie.getWeight());
@@ -68,11 +68,13 @@ public class DatabaseHelper {
 	private Serie cursorToSerie(Cursor cursor) {
 
 		Serie serie = new Serie();
-
-		serie.setDate(Date.valueOf(cursor.getString(1)));
-		serie.setName(cursor.getString(2));
-		serie.setRepetition(cursor.getInt(3));
-		serie.setWeight(cursor.getInt(4));
+		
+		Date date= new Date(cursor.getLong(0));
+		
+		serie.setDate(date);
+		serie.setName(cursor.getString(1));
+		serie.setRepetition(cursor.getInt(2));
+		serie.setWeight(cursor.getInt(3));
 
 		return serie;
 	}

@@ -32,7 +32,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		// SQL statement to create book table
         String CREATE_SERIES_TABLE = "CREATE TABLE "+ TABLE_NAME+ " ( " +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-        		"date TEXT," +
+        		"date int," +
                 "name TEXT, "+
                 "repetition INTEGER," + 
                 "weight INTEGER," +
