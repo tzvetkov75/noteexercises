@@ -28,9 +28,11 @@
                 android:layout_weight="1"
                 android:orientation="vertical" >
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="66dp" >
+                <GridLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="203dp"
+                    android:columnCount="2"
+                    android:rowCount="4" >
 
                     <Button
                         android:id="@+id/buttonStore"
@@ -46,11 +48,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/general" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="61dp" >
 
                     <TextView
                         android:id="@+id/exerciese"
@@ -60,18 +57,10 @@
 
                     <EditText
                         android:id="@+id/editExerciese"
-                        android:layout_width="match_parent"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:ems="10" >
-
-                        <requestFocus />
-                    </EditText>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp" >
+                        android:ems="10" />
 
                     <TextView
                         android:id="@+id/viewTextRepetition"
@@ -81,17 +70,10 @@
 
                     <EditText
                         android:id="@+id/editTextRepetitions"
-                        android:layout_width="match_parent"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:editable="false"
-                        android:ems="10"
-                        android:onClick="HandleClickRepWeight" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="59dp" >
+                        android:ems="10" />
 
                     <TextView
                         android:id="@+id/textView3"
@@ -101,13 +83,11 @@
 
                     <EditText
                         android:id="@+id/exitTextWeight"
-                        android:layout_width="266dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:editable="false"
-                        android:ems="10"
-                        android:onClick="HandleClickRepWeight" />
-                </LinearLayout>
+                        android:ems="10" />
+                </GridLayout>
 
                 <TextView
                     android:id="@+id/textView4"
@@ -117,8 +97,8 @@
 
                 <ListView
                     android:id="@+id/listViewHistory"
-                    android:layout_width="341dp"
-                    android:layout_height="217dp" >
+                    android:layout_width="match_parent"
+                    android:layout_height="264dp" >
                 </ListView>
             </LinearLayout>
 

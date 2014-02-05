@@ -44,7 +44,7 @@ public class DatabaseHelper {
 		while (!cursor.isAfterLast()) {
 
 			String serie = cursorToText(cursor);
-			series.add(serie);
+			series.add(0, serie);
 			cursor.moveToNext();
 		}
 
@@ -70,11 +70,12 @@ public class DatabaseHelper {
 
 		String serie = new String();
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm E dd/MM/yy");
+//		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm E dd/MM/yy");
+		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm E ");
 		Date date= new Date(cursor.getLong(0));
 		String sDate= sdf.format(date); 
 				
-		serie = sDate + "  " + cursor.getString(1) + ": "+ cursor.getString(2)+"x"+cursor.getString(3) +" (rep/weight)";
+		serie = sDate + "   " + cursor.getString(1) + ":  "+ cursor.getString(2)+"x"+cursor.getString(3) +"";
 		
 		return serie;
 	}

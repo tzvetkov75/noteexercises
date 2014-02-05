@@ -60,7 +60,9 @@ public class MainActivity extends Activity {
 		// elements in a ListView
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, values);
+				R.layout.my_layout_history, values);
+		
+//				android.R.layout.simple_list_item_1, values);
 		listviewHistory.setAdapter(adapter);
 
 	}
@@ -110,6 +112,9 @@ public class MainActivity extends Activity {
 		
 		database.storeSerie(serie);
 		updateHistory();
+		edName.setText("");
+		edWei.setText("");
+		edRep.setText("");
 	}
 
 }
