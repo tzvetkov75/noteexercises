@@ -7,6 +7,6 @@
     android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeightSmall"
     android:textAppearance="?android:attr/textAppearanceListItemSmall"
-  
+    
     android:textSize="11sp"
  />

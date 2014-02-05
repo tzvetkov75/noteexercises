@@ -97,7 +97,7 @@
 
                 <ListView
                     android:id="@+id/listViewHistory"
-                    android:layout_width="match_parent"
+                    android:layout_width="match_parent"                  
                     android:layout_height="264dp" >
                 </ListView>
             </LinearLayout>

@@ -34,14 +34,16 @@ public class DatabaseHelper {
 
 	public List<String> getAllSeries() {
 
+//			this get only the last 50 series
+			
 		List<String> series = new ArrayList<String>();
 
 		Cursor cursor = database.query(MySQLiteHelper.TABLE_NAME, ALL_COLUMNS,
 				null, null, null, null, null);
 
 		cursor.moveToFirst();
-
-		while (!cursor.isAfterLast()) {
+		
+		while (!cursor.isAfterLast() && series.size() < 50 ) {
 
 			String serie = cursorToText(cursor);
 			series.add(0, serie);
@@ -75,7 +77,7 @@ public class DatabaseHelper {
 		Date date= new Date(cursor.getLong(0));
 		String sDate= sdf.format(date); 
 				
-		serie = sDate + "   " + cursor.getString(1) + ":  "+ cursor.getString(2)+"x"+cursor.getString(3) +"";
+		serie = sDate + ":   " + cursor.getString(1) + ":   " + cursor.getString(2) + "x" + cursor.getString(3) +"";
 		
 		return serie;
 	}
