@@ -1,6 +1,7 @@
 package com.example.fitnessnotes;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +32,9 @@ public class DatabaseHelper {
 		dbHelper.close();
 	}
 
-	public List<Serie> getAllSeries() {
+	public List<String> getAllSeries() {
 
-		List<Serie> series = new ArrayList<Serie>();
+		List<String> series = new ArrayList<String>();
 
 		Cursor cursor = database.query(MySQLiteHelper.TABLE_NAME, ALL_COLUMNS,
 				null, null, null, null, null);
@@ -42,7 +43,7 @@ public class DatabaseHelper {
 
 		while (!cursor.isAfterLast()) {
 
-			Serie serie = cursorToSerie(cursor);
+			String serie = cursorToText(cursor);
 			series.add(serie);
 			cursor.moveToNext();
 		}
@@ -65,17 +66,16 @@ public class DatabaseHelper {
 	        
 		  }
 
-	private Serie cursorToSerie(Cursor cursor) {
+	private String cursorToText(Cursor cursor) {
 
-		Serie serie = new Serie();
+		String serie = new String();
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm E dd/MM/yy");
 		Date date= new Date(cursor.getLong(0));
+		String sDate= sdf.format(date); 
+				
+		serie = sDate + "  " + cursor.getString(1) + ": "+ cursor.getString(2)+"x"+cursor.getString(3) +" (rep/weight)";
 		
-		serie.setDate(date);
-		serie.setName(cursor.getString(1));
-		serie.setRepetition(cursor.getInt(2));
-		serie.setWeight(cursor.getInt(3));
-
 		return serie;
 	}
 

@@ -54,12 +54,12 @@ public class MainActivity extends Activity {
 
 	private void updateHistory() {
 
-		List<Serie> values = database.getAllSeries();
+		List<String> values = database.getAllSeries();
 
 		// use the SimpleCursorAdapter to show the
 		// elements in a ListView
 
-		ArrayAdapter<Serie> adapter = new ArrayAdapter<Serie>(this,
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, values);
 		listviewHistory.setAdapter(adapter);
 

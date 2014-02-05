@@ -5,7 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!  c c c d d</string>
     <string name="button2">+ 2</string>
-	<string name="button10">+ 10</string>    
+    <string name="button10">+ 10</string>
     <string name="button5">+ 5</string>
     <string name="button1">+ 1</string>
     <string name="button0">  0</string>
@@ -13,10 +13,9 @@
     <string name="buttonStopTraining">Stop Trainging</string>
     <string name="buttonStore">Store Serie</string>
     <string name="textViewHistory">History</string>
-    <string name="textViewWeight">Weight</string>
-    <string name="textViewRepetitions">Repetitions</string>
-    <string name="textViewExercise">Exercise name</string>
+    <string name="textViewWeight">Weight       :</string>
+    <string name="textViewRepetitions">Repetitions  :</string>
+    <string name="textViewExercise">Exercise name:</string>
     <string name="general">Give the series parmeter</string>
-    
 
 </resources>

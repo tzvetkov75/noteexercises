@@ -24,20 +24,33 @@
             <LinearLayout
                 android:id="@+id/linearLayout1"
                 android:layout_width="0dp"
-                android:layout_height="301dp"
+                android:layout_height="399dp"
                 android:layout_weight="1"
                 android:orientation="vertical" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="55"
-                    android:text="@string/general" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="66dp" >
+
+                    <Button
+                        android:id="@+id/buttonStore"
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="HandleClickStore"
+                        android:text="@string/buttonStore" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/general" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="55" >
+                    android:layout_height="61dp" >
 
                     <TextView
                         android:id="@+id/exerciese"
@@ -58,8 +71,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="55" >
+                    android:layout_height="60dp" >
 
                     <TextView
                         android:id="@+id/viewTextRepetition"
@@ -79,8 +91,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="55" >
+                    android:layout_height="59dp" >
 
                     <TextView
                         android:id="@+id/textView3"
@@ -106,9 +117,8 @@
 
                 <ListView
                     android:id="@+id/listViewHistory"
-                    android:layout_width="match_parent"
-                    android:layout_height="108dp"
-                    android:layout_weight="8518857216.00" >
+                    android:layout_width="341dp"
+                    android:layout_height="217dp" >
                 </ListView>
             </LinearLayout>
 
@@ -157,21 +167,6 @@
                     android:tag="0"
                     android:text="@string/button0" />
             </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1" >
-
-            <Button
-                android:id="@+id/buttonStore"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="HandleClickStore"
-                android:text="@string/buttonStore" />
         </LinearLayout>
     </LinearLayout>
 
