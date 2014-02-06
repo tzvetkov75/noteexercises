@@ -6,6 +6,9 @@ import java.util.regex.Pattern;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.Menu;
 import android.view.View;
@@ -54,33 +57,96 @@ public class MainActivity extends Activity {
 		database = new DatabaseHelper(this);
 		database.open();
 		updateHistory();
-		
-//		set on click event 
 
-		listviewHistory.setOnItemClickListener (new AdapterView.OnItemClickListener() {
-			
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				
-			    // When clicked, show a toast with the TextView text
-				Pattern pattern = Pattern.compile(".*:   (.*?):   (.*)x(.*)");
-				Matcher matcher = pattern.matcher(((TextView) view).getText());
-				
-				if (matcher.find())
-				{
-				    System.out.println(matcher.group(1));
-				}
-				
-				edName.setText(matcher.group(1));
-				edRep.setText(matcher.group(2));
-				edWei.setText(matcher.group(3));
-				
-//			    Toast.makeText(getApplicationContext(),
-//			    		matcher.group(2), Toast.LENGTH_SHORT).show();
-			}
-		});
-		
-		
+		listviewHistory
+				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+					// set on click event to pre load values
+					public void onItemClick(AdapterView<?> parent, View view,
+							int position, long id) {
+
+						// When clicked, show a toast with the TextView text
+						Pattern pattern = Pattern
+								.compile(".*:   (.*?):   (.*)x(.*)");
+						Matcher matcher = pattern.matcher(((TextView) view)
+								.getText());
+
+						if (matcher.find()) {
+							System.out.println(matcher.group(1));
+						}
+
+						edName.setText(matcher.group(1));
+						edRep.setText(matcher.group(2));
+						edWei.setText(matcher.group(3));
+
+						Toast.makeText(getApplicationContext(),
+								"values pre loaded", Toast.LENGTH_SHORT).show();
+					}
+				});
+
+		// set on long click event to delete
+		listviewHistory
+				.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+					public boolean onItemLongClick(AdapterView<?> parent,
+							View view, int position, long id) {
+
+						deleteEntry(position, ((TextView) view).getText()
+								.toString());
+
+						return true;
+					}
+				});
+
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+
+		case R.id.action_settings:
+			Intent i = new Intent(this, UserPreferencesActivity.class);
+			startActivity(i);
+			break;
+
+		}
+
+		return true;
+	}
+
+	private void deleteEntry(final int position, String text) {
+
+		new AlertDialog.Builder(this)
+				.setTitle("Delete entry")
+				.setMessage(
+						"Are you sure to delete #" + position + "(" + text
+								+ ")this entry?")
+
+				.setPositiveButton(android.R.string.yes,
+						new DialogInterface.OnClickListener() {
+
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// continue with delete
+
+								database.deleteEntry(position);
+								updateHistory();
+
+								Toast.makeText(getApplicationContext(),
+										"entry deleted", Toast.LENGTH_SHORT)
+										.show();
+
+							}
+						})
+
+				.setNegativeButton(android.R.string.no,
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// do nothing
+							}
+						}).show();
+
 	}
 
 	private void updateHistory() {
@@ -90,10 +156,10 @@ public class MainActivity extends Activity {
 		// use the SimpleCursorAdapter to show the
 		// elements in a ListView
 
-		adapter = new ArrayAdapter<String>(this,
-				R.layout.my_layout_history, values);
-		
-//				android.R.layout.simple_list_item_1, values);
+		adapter = new ArrayAdapter<String>(this, R.layout.my_layout_history,
+				values);
+
+		// android.R.layout.simple_list_item_1, values);
 		listviewHistory.setAdapter(adapter);
 
 	}
@@ -139,13 +205,19 @@ public class MainActivity extends Activity {
 	// This handler reacts on buttons store
 	public void HandleClickStore(View arg0) {
 
-		Serie serie = new Serie(edName.getText().toString(), Integer.parseInt(edRep.getText().toString()),Integer.parseInt(edWei.getText().toString()));  
-		
+		Serie serie = new Serie(edName.getText().toString(),
+				Integer.parseInt(edRep.getText().toString()),
+				Integer.parseInt(edWei.getText().toString()));
+
 		database.storeSerie(serie);
 		updateHistory();
 		edName.setText("");
 		edWei.setText("");
 		edRep.setText("");
+	}
+
+	public void exportDbCSV() {
+
 	}
 
 }

@@ -18,6 +18,8 @@ public class DatabaseHelper {
 	private MySQLiteHelper dbHelper;
 	private final static String[] ALL_COLUMNS = { "date", "name",
 			"repetition", "weight", "trainingId" };
+	private List<Serie> series; 
+	
 
 	public DatabaseHelper(Context context) {
 
@@ -36,23 +38,25 @@ public class DatabaseHelper {
 
 //			this get only the last 50 series
 			
-		List<String> series = new ArrayList<String>();
+		List<String> seriesTxt = new ArrayList<String>();
+		series = new ArrayList<Serie>();
 
 		Cursor cursor = database.query(MySQLiteHelper.TABLE_NAME, ALL_COLUMNS,
 				null, null, null, null, null);
 
 		cursor.moveToFirst();
 		
-		while (!cursor.isAfterLast() && series.size() < 50 ) {
+		while (!cursor.isAfterLast() && seriesTxt.size() < 50 ) {
 
 			String serie = cursorToText(cursor);
-			series.add(0, serie);
+			seriesTxt.add(0, serie);
+			series.add(0, cursorToSerie(cursor));
 			cursor.moveToNext();
 		}
 
 		// make sure to close the cursor
 		cursor.close();
-		return series;
+		return seriesTxt;
 	}
 	
 	 public void storeSerie(Serie serie) {
@@ -66,8 +70,31 @@ public class DatabaseHelper {
     
 	        long insertId = database.insert(MySQLiteHelper.TABLE_NAME , null,  values);
 	        
+	        
 		  }
 
+	public boolean deleteEntry(int position) {
+//		Deletes an entry selected by position 
+		
+		Date date = (Date) series.get(position).getDate();
+		
+		try
+	    {
+			database.delete(MySQLiteHelper.TABLE_NAME, "date = ?", new String[] {  Long.toString(date.getTime()) });
+	    }
+	    catch(Exception e)
+	    {
+	    	database.close();
+	        return false; 
+	    }
+	    finally
+	    {
+	        
+	        return true; 
+	    }
+		
+		
+	}
 	private String cursorToText(Cursor cursor) {
 
 		String serie = new String();
@@ -81,5 +108,18 @@ public class DatabaseHelper {
 		
 		return serie;
 	}
+	private Serie cursorToSerie(Cursor cursor) {
+
+		Serie serie = new Serie();
+		
+		serie.setDate(new Date(cursor.getLong(0)));
+		serie.setName(cursor.getString(1));
+		serie.setRepetition(Integer.parseInt(cursor.getString(2)));
+		serie.setWeight(Integer.parseInt(cursor.getString(3)));
+	
+		
+		return serie;
+	}
+	
 
 }
