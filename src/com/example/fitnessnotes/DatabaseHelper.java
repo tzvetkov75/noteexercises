@@ -1,8 +1,14 @@
 package com.example.fitnessnotes;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -10,6 +16,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 // This class provides a general API to add series in the DB 
 public class DatabaseHelper {
@@ -18,6 +25,15 @@ public class DatabaseHelper {
 	private MySQLiteHelper dbHelper;
 	private final static String[] ALL_COLUMNS = { "date", "name",
 			"repetition", "weight", "trainingId" };
+	
+	public List<Serie> getSeries() {
+		return series;
+	}
+
+	public void setSeries(List<Serie> series) {
+		this.series = series;
+	}
+
 	private List<Serie> series; 
 	
 
@@ -119,6 +135,33 @@ public class DatabaseHelper {
 	
 		
 		return serie;
+	}
+	
+	public void exportToCSV(FileOutputStream file) throws IOException  {
+//		Export the DB to CSV file 
+			
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy hh:mm,");
+		String temp;
+				
+		  String eol = System.getProperty("line.separator");
+		  
+	    	
+		  file.write(String.valueOf("date, name, Repetition(Duration), Weight(Difficulty)").getBytes());
+		  file.write(eol.getBytes());
+				  		  
+		  for (Iterator<Serie> iter = series.iterator(); iter.hasNext(); ) {
+			    Serie serie = iter.next();
+
+					file.write(sdf.format(serie.getDate()).getBytes());
+					file.write(serie.getName().getBytes());
+					file.write(String.valueOf(",").getBytes());
+				    file.write(String.valueOf(serie.getRepetition()).getBytes());
+				    file.write(String.valueOf(",").getBytes());
+				    file.write(String.valueOf(serie.getRepetition()).getBytes());
+				    file.write(eol.getBytes());
+	   	}
+		  
+				
 	}
 	
 

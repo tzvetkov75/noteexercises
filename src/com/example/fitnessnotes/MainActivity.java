@@ -1,15 +1,23 @@
 package com.example.fitnessnotes;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -214,10 +222,70 @@ public class MainActivity extends Activity {
 		edName.setText("");
 		edWei.setText("");
 		edRep.setText("");
+
+		exportToCSV("test.csv");
 	}
 
-	public void exportDbCSV() {
+	public void exportToCSV(String fileName) {
+		// Export the DB to CSV file
 
+		if (isExternalStorageWritable()) {
+
+			try {
+
+				File root = android.os.Environment
+						.getExternalStorageDirectory();
+				File dir = new File(root.getAbsolutePath() + "/download");
+				dir.mkdirs();
+				File file = new File(dir, fileName);
+				FileOutputStream fops = new FileOutputStream(file);
+
+				database.exportToCSV(fops);
+
+				fops.close();
+				Toast.makeText(getApplicationContext(),
+						"File Saved successfully into External Storage",
+						Toast.LENGTH_SHORT).show();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			Toast.makeText(getApplicationContext(),
+					"External Storage not accessable", Toast.LENGTH_LONG)
+					.show();
+		}
+
+	}
+
+	/* Checks if external storage is available for read and write */
+	public boolean isExternalStorageWritable() {
+		String state = Environment.getExternalStorageState();
+		if (Environment.MEDIA_MOUNTED.equals(state)) {
+			return true;
+		}
+		return false;
+	}
+
+	/* Checks if external storage is available to at least read */
+	public boolean isExternalStorageReadable() {
+		String state = Environment.getExternalStorageState();
+		if (Environment.MEDIA_MOUNTED.equals(state)
+				|| Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+			return true;
+		}
+		return false;
+	}
+
+	public File getAlbumStorageDir(String fileName) {
+		// Get the directory for the user's public pictures directory.
+		File file = new File(
+				Environment
+						.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),fileName);
+		if (!file.mkdirs()) {
+			Log.e("Vesselin", "Directory not created");
+		}
+		return file;
 	}
 
 }
