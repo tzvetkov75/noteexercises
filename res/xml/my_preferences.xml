@@ -3,13 +3,11 @@
     
     <EditTextPreference 
             android:key="FileCSV"
-            android:title="File to export CSV"
-            android:summary="Define the file to export the series"
+            android:title="Filename to export CSV"
+            android:summary="Export in external SD card under Downloads"
             android:dialogTitle="File to export CSV"
             android:dialogMessage="Provide the Filename"   
             android:defaultValue="fitnessExport.csv"/>
-    
-    <CheckBoxPreference android:title="Export to CSV" android:key="exportToCSV" android:summary="Do you want to export to CSV File" android:defaultValue="false"/>
     
     <CheckBoxPreference android:title="Sync with Google drive" android:key="syncWithGdrive" android:summary="Do you want to syn with Google Drive " android:defaultValue="false"/>
 

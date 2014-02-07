@@ -24,6 +24,7 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
+        public static final int action_export=0x7f090010;
         public static final int action_settings=0x7f09000f;
         public static final int button0=0x7f09000e;
         public static final int button1=0x7f09000d;
@@ -49,6 +50,7 @@ public final class R {
         public static final int main=0x7f080000;
     }
     public static final class string {
+        public static final int action_export=0x7f060010;
         public static final int action_settings=0x7f060001;
         public static final int app_name=0x7f060000;
         public static final int button0=0x7f060007;

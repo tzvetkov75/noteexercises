@@ -11,11 +11,14 @@ import java.util.regex.Pattern;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.Menu;
@@ -117,6 +120,15 @@ public class MainActivity extends Activity {
 			startActivity(i);
 			break;
 
+		case R.id.action_export:
+
+			SharedPreferences _sharedPreferences = PreferenceManager
+					.getDefaultSharedPreferences(getBaseContext());
+			String nameFile = _sharedPreferences.getString("FileCSV",
+					"exportedFitnessNotes.csv");
+			exportToCSV(nameFile);
+
+			break;
 		}
 
 		return true;
@@ -208,6 +220,7 @@ public class MainActivity extends Activity {
 			tempInt = tempInt + Integer.parseInt(btn.getTag().toString());
 			ed.setText(Integer.toString(tempInt));
 		}
+
 	}
 
 	// This handler reacts on buttons store
@@ -223,7 +236,6 @@ public class MainActivity extends Activity {
 		edWei.setText("");
 		edRep.setText("");
 
-		exportToCSV("test.csv");
 	}
 
 	public void exportToCSV(String fileName) {
@@ -243,9 +255,10 @@ public class MainActivity extends Activity {
 				database.exportToCSV(fops);
 
 				fops.close();
-				Toast.makeText(getApplicationContext(),
-						"File Saved successfully into External Storage",
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(
+						getApplicationContext(),
+						"Saved successfully into External Storage (/downloads/"
+								+ fileName + ")", Toast.LENGTH_SHORT).show();
 
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -275,17 +288,6 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		return false;
-	}
-
-	public File getAlbumStorageDir(String fileName) {
-		// Get the directory for the user's public pictures directory.
-		File file = new File(
-				Environment
-						.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),fileName);
-		if (!file.mkdirs()) {
-			Log.e("Vesselin", "Directory not created");
-		}
-		return file;
 	}
 
 }
