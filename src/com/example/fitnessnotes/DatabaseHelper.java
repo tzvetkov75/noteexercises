@@ -105,7 +105,6 @@ public class DatabaseHelper {
 	    }
 	    finally
 	    {
-	        
 	        return true; 
 	    }
 		

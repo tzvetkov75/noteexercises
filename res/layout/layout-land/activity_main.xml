@@ -9,13 +9,13 @@
     tools:context=".MainActivity" >
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:orientation="vertical" >
-
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -24,12 +24,12 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout1"
-                android:layout_width="273dp"
+                android:layout_width="232dp"
                 android:layout_height="234dp"
                 android:orientation="vertical" >
 
                 <GridLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="227dp"
                     android:layout_height="203dp"
                     android:columnCount="2"
                     android:rowCount="4" >
@@ -60,7 +60,7 @@
 
                     <EditText
                         android:id="@+id/editExerciese"
-                        android:layout_width="200dp"
+                        android:layout_width="149dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="fill_horizontal"
                         android:layout_weight="1"
@@ -143,23 +143,32 @@
                     android:tag="0"
                     android:text="@string/button0" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="106dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/textViewHistory" />
+
+                <ListView
+                    android:id="@+id/listViewHistory"
+                    android:layout_width="198dp"
+                    android:layout_height="match_parent" >
+
+                </ListView>
+            </LinearLayout>
+            
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/textViewHistory" />
 
-        <ListView
-            android:id="@+id/listViewHistory"
-            android:layout_gravity=""
-            android:layout_width="wrap_content"
-            android:layout_height="182dp" >
-
-        </ListView>
-        
+    
     </LinearLayout>
+
+
 
 </RelativeLayout>

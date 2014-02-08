@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -32,6 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.graphics.PorterDuff;
 import android.view.*;
+import android.view.inputmethod.InputMethodManager;
 
 public class MainActivity extends Activity {
 
@@ -65,6 +67,20 @@ public class MainActivity extends Activity {
 			}
 		});
 
+//		This listener hides the soft keybord when there is not focus on EditeText Excercise Name  
+		edName.setOnFocusChangeListener( new View.OnFocusChangeListener() {
+			
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				
+				if(v.getId() == R.id.editExerciese && !hasFocus) {
+
+		            InputMethodManager imm =  (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);			
+			}
+		}
+		});
+		
 		database = new DatabaseHelper(this);
 		database.open();
 		updateHistory();
@@ -226,15 +242,27 @@ public class MainActivity extends Activity {
 	// This handler reacts on buttons store
 	public void HandleClickStore(View arg0) {
 
-		Serie serie = new Serie(edName.getText().toString(),
-				Integer.parseInt(edRep.getText().toString()),
-				Integer.parseInt(edWei.getText().toString()));
+		if (!TextUtils.isEmpty(edName.getText().toString())) {
+	
+			if (!TextUtils.isEmpty(edRep.getText().toString())) {
+				edRep.setText("0");
+			}
+			
+			if (!TextUtils.isEmpty(edWei.getText().toString())) {
+				edWei.setText("0");
+			}
+			
+			Serie serie = new Serie(edName.getText().toString(),
+					Integer.parseInt(edRep.getText().toString()),
+					Integer.parseInt(edWei.getText().toString()));
 
-		database.storeSerie(serie);
-		updateHistory();
-		edName.setText("");
-		edWei.setText("");
-		edRep.setText("");
+			database.storeSerie(serie);
+			updateHistory();
+			edName.setText("");
+			edWei.setText("");
+			edRep.setText("");
+			
+		}
 
 	}
 
@@ -257,7 +285,7 @@ public class MainActivity extends Activity {
 				fops.close();
 				Toast.makeText(
 						getApplicationContext(),
-						"Saved successfully into External Storage (/downloads/"
+						"Saved successfully into External Storage \n(/downloads/"
 								+ fileName + ")", Toast.LENGTH_SHORT).show();
 
 			} catch (IOException e) {
