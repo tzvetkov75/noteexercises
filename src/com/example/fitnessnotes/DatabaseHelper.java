@@ -69,7 +69,8 @@ public class DatabaseHelper {
 			series.add(0, cursorToSerie(cursor));
 			cursor.moveToNext();
 		}
-
+		
+		
 		// make sure to close the cursor
 		cursor.close();
 		return seriesTxt;
@@ -115,7 +116,7 @@ public class DatabaseHelper {
 		String serie = new String();
 		
 //		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm E dd/MM/yy");
-		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm E ");
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm E ");
 		Date date= new Date(cursor.getLong(0));
 		String sDate= sdf.format(date); 
 				
@@ -139,7 +140,7 @@ public class DatabaseHelper {
 	public void exportToCSV(FileOutputStream file) throws IOException  {
 //		Export the DB to CSV file 
 			
-		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy hh:mm,");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm,");
 		String temp;
 				
 		  String eol = System.getProperty("line.separator");
@@ -147,18 +148,30 @@ public class DatabaseHelper {
 	    	
 		  file.write(String.valueOf("date, name, Repetition(Duration), Weight(Difficulty)").getBytes());
 		  file.write(eol.getBytes());
-				  		  
-		  for (Iterator<Serie> iter = series.iterator(); iter.hasNext(); ) {
-			    Serie serie = iter.next();
 
-					file.write(sdf.format(serie.getDate()).getBytes());
-					file.write(serie.getName().getBytes());
-					file.write(String.valueOf(",").getBytes());
-				    file.write(String.valueOf(serie.getRepetition()).getBytes());
-				    file.write(String.valueOf(",").getBytes());
-				    file.write(String.valueOf(serie.getRepetition()).getBytes());
-				    file.write(eol.getBytes());
-	   	}
+			Cursor cursor = database.query(MySQLiteHelper.TABLE_NAME, ALL_COLUMNS,
+					null, null, null, null, null);
+
+			cursor.moveToFirst();
+			
+			while (!cursor.isAfterLast()) {
+
+				Serie serie = cursorToSerie(cursor);
+				
+				file.write(sdf.format(serie.getDate()).getBytes());
+				file.write(serie.getName().getBytes());
+				file.write(String.valueOf(",").getBytes());
+			    file.write(String.valueOf(serie.getRepetition()).getBytes());
+			    file.write(String.valueOf(",").getBytes());
+			    file.write(String.valueOf(serie.getRepetition()).getBytes());
+			    file.write(eol.getBytes());
+				
+				cursor.moveToNext();
+			}
+			
+			
+			// make sure to close the cursor
+			cursor.close();
 		  
 				
 	}

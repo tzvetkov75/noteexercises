@@ -232,9 +232,13 @@ public class MainActivity extends Activity {
 				tempInt = 0;
 			}
 
+			Toast.makeText(this, "set to "+String.valueOf(tempInt) +"+"+ btn.getTag().toString()+"="+
+						String.valueOf(tempInt + Integer.parseInt(btn.getTag().toString())), Toast.LENGTH_SHORT).show();
 			// add the Tag of the button to the current value of the TextEdit
 			tempInt = tempInt + Integer.parseInt(btn.getTag().toString());
 			ed.setText(Integer.toString(tempInt));
+
+
 		}
 
 	}
@@ -244,11 +248,11 @@ public class MainActivity extends Activity {
 
 		if (!TextUtils.isEmpty(edName.getText().toString())) {
 	
-			if (!TextUtils.isEmpty(edRep.getText().toString())) {
+			if (TextUtils.isEmpty(edRep.getText().toString())) {
 				edRep.setText("0");
 			}
 			
-			if (!TextUtils.isEmpty(edWei.getText().toString())) {
+			if (TextUtils.isEmpty(edWei.getText().toString())) {
 				edWei.setText("0");
 			}
 			
@@ -286,7 +290,7 @@ public class MainActivity extends Activity {
 				Toast.makeText(
 						getApplicationContext(),
 						"Saved successfully into External Storage \n(/downloads/"
-								+ fileName + ")", Toast.LENGTH_SHORT).show();
+								+ fileName + ")", Toast.LENGTH_LONG).show();
 
 			} catch (IOException e) {
 				e.printStackTrace();
