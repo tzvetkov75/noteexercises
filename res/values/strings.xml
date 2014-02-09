@@ -11,7 +11,7 @@
     <string name="button0">  0</string>
     <string name="buttonNewTraining">New Training</string>
     <string name="buttonStopTraining">Stop Trainging</string>
-    <string name="buttonStore">Store Serie</string>
+    <string name="buttonStore">Store serie</string>
     <string name="textViewHistory">History</string>
     <string name="textViewWeight"	  >Weight \n(Level)    :</string>
     <string name="textViewRepetitions">Repetitions \n(Duration) :</string>
