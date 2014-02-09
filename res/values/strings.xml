@@ -13,9 +13,9 @@
     <string name="buttonStopTraining">Stop Trainging</string>
     <string name="buttonStore">Store serie</string>
     <string name="textViewHistory">History</string>
-    <string name="textViewWeight"	  >Weight \n(Level)    :</string>
-    <string name="textViewRepetitions">Repetitions \n(Duration) :</string>
-    <string name="textViewExercise">Exercise name:</string>
+    <string name="textViewWeight"	  >Weight \n(Level) </string>
+    <string name="textViewRepetitions">Repetitions \n(Duration) </string>
+    <string name="textViewExercise">Exercise\nname </string>
     <string name="general"> .</string>
     <string name="action_export">Export to CSV</string>
 

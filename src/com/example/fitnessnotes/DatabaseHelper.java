@@ -124,7 +124,7 @@ public class DatabaseHelper {
 		Date date= new Date(cursor.getLong(0));
 		String sDate= sdf.format(date); 
 				
-		serie = sDate + ":   " + cursor.getString(1) + ":   " + cursor.getString(2) + "x" + cursor.getString(3) +"";
+		serie = sDate + ":   " + cursor.getString(1) + ":   " + cursor.getString(2) + " x " + cursor.getString(3) +"";
 		
 		return serie;
 	}
@@ -167,7 +167,7 @@ public class DatabaseHelper {
 				file.write(String.valueOf(",").getBytes());
 			    file.write(String.valueOf(serie.getRepetition()).getBytes());
 			    file.write(String.valueOf(",").getBytes());
-			    file.write(String.valueOf(serie.getRepetition()).getBytes());
+			    file.write(String.valueOf(serie.getWeight()).getBytes());
 			    file.write(eol.getBytes());
 				
 				cursor.moveToNext();

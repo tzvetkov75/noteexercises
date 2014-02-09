@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
 		edRep = (EditText) findViewById(R.id.editTextRepetitions);
 		edWei = (EditText) findViewById(R.id.exitTextWeight);
 		listviewHistory = (ListView) findViewById(R.id.listViewHistory);
-
+	
 		edRep.setOnTouchListener(new View.OnTouchListener() {
 			public boolean onTouch(View arg0, MotionEvent arg1) {
 				ed = (EditText) arg0;
@@ -95,7 +95,7 @@ public class MainActivity extends Activity {
 
 						// When clicked, show a toast with the TextView text
 						Pattern pattern = Pattern
-								.compile(".*:   (.*?):   (.*)x(.*)");
+								.compile(".*:   (.*?):   ([0-9]*) x ([0-9]*)");
 						Matcher matcher = pattern.matcher(((TextView) view)
 								.getText());
 
