@@ -42,6 +42,7 @@ public class MainActivity extends Activity {
 	private DatabaseHelper database;
 	private ListView listviewHistory;
 	ArrayAdapter<String> adapter;
+	private boolean showedHistoryHint=false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -232,8 +233,8 @@ public class MainActivity extends Activity {
 				tempInt = 0;
 			}
 
-			Toast.makeText(this, "set to "+String.valueOf(tempInt) +"+"+ btn.getTag().toString()+"="+
-						String.valueOf(tempInt + Integer.parseInt(btn.getTag().toString())), Toast.LENGTH_SHORT).show();
+//			Toast.makeText(this, "set to "+String.valueOf(tempInt) +"+"+ btn.getTag().toString()+"="+
+//						String.valueOf(tempInt + Integer.parseInt(btn.getTag().toString())), Toast.LENGTH_SHORT).show();
 			// add the Tag of the button to the current value of the TextEdit
 			tempInt = tempInt + Integer.parseInt(btn.getTag().toString());
 			ed.setText(Integer.toString(tempInt));
@@ -259,13 +260,26 @@ public class MainActivity extends Activity {
 			Serie serie = new Serie(edName.getText().toString(),
 					Integer.parseInt(edRep.getText().toString()),
 					Integer.parseInt(edWei.getText().toString()));
-
+			
+			if (!showedHistoryHint) {
+				
+				Toast.makeText(getApplicationContext(),
+						"Press on the History list to pre-load values! \n or hold long to delete ", Toast.LENGTH_LONG)
+						.show();
+				
+				showedHistoryHint=true;
+				
+			}
+			
 			database.storeSerie(serie);
 			updateHistory();
 			edName.setText("");
 			edWei.setText("");
 			edRep.setText("");
 			
+		} else {
+			Toast.makeText(this, "no exercise name! \n type or press on history list",
+					Toast.LENGTH_SHORT).show();
 		}
 
 	}

@@ -62,14 +62,18 @@ public class DatabaseHelper {
 
 		cursor.moveToFirst();
 		
-		while (!cursor.isAfterLast() && seriesTxt.size() < 50 ) {
+		while (!cursor.isAfterLast() && seriesTxt.size() < 101 ) {
 
 			String serie = cursorToText(cursor);
+			
+			if (series.size()==100)	serie="displayed last 100, for more export to CSV";
+			 
 			seriesTxt.add(0, serie);
 			series.add(0, cursorToSerie(cursor));
 			cursor.moveToNext();
 		}
 		
+	
 		
 		// make sure to close the cursor
 		cursor.close();

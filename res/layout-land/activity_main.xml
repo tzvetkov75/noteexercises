@@ -29,8 +29,8 @@
                 android:orientation="vertical" >
 
                 <GridLayout
-                    android:layout_width="227dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="245dp"
                     android:columnCount="2"
                     android:rowCount="4" >
 
@@ -60,8 +60,8 @@
 
                     <EditText
                         android:id="@+id/editExerciese"
-                        android:layout_width="149dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="fill_horizontal"
                         android:layout_weight="1"
                         android:ems="10" />
@@ -75,12 +75,12 @@
 
                     <EditText
                         android:id="@+id/editTextRepetitions"
-                        android:layout_width="wrap_content"
+                        android:layout_width="90dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
+                        android:layout_gravity="fill_horizontal|top"
                         android:editable="false"
                         android:ems="10"
-                        android:hint="select and use the buttons ->" />
+                        android:hint="use the buttons ->" />
 
                     <TextView
                         android:id="@+id/textView3"
@@ -91,19 +91,19 @@
 
                     <EditText
                         android:id="@+id/exitTextWeight"
-                        android:layout_width="wrap_content"
+                        android:layout_width="90dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal|top"
+                        android:layout_gravity="fill_horizontal"
                         android:editable="false"
                         android:ems="10"
-                        android:hint="select and use the buttons ->" />
+                        android:hint="use the buttons ->" />
 
                 </GridLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="78dp"
-                android:layout_height="261dp"
+                android:layout_height="276dp"
                 android:orientation="vertical" >
 
                 <Button
@@ -160,8 +160,8 @@
 
                 <ListView
                     android:id="@+id/listViewHistory"
-                    android:layout_width="178dp"
-                    android:layout_height="match_parent" >
+                    android:layout_width="251dp"
+                    android:layout_height="270dp" >
                 </ListView>
 
             </LinearLayout>
