@@ -4,12 +4,17 @@
     <EditTextPreference 
             android:key="FileCSV"
             android:title="Filename to export CSV"
-            android:summary="Export in external SD card under Downloads"
+            android:summary="Export in external SD card on Downloads"
             android:dialogTitle="File to export CSV"
             android:dialogMessage="Provide the Filename"   
             android:defaultValue="fitnessExport.csv"/>
     
-    <CheckBoxPreference android:title="Sync with Google drive" android:key="syncWithGdrive" android:summary="Do you want to syn with Google Drive " android:defaultValue="false"/>
+    <CheckBoxPreference 
+        	android:title="Sync with Google drive" 
+        	android:key="syncWithGdrive"
+        	android:enabled="false" 
+        	android:summary="Do you want to syn with Google Drive " 
+        	android:defaultValue="false"/>
 
     
 </PreferenceScreen>

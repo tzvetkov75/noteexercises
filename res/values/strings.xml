@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">FitnessNotes</string>
+    <string name="app_description">Allows you to record you series in easy way and export them to CSV in File on your SD card</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!  c c c d d</string>
     <string name="button2">+ 2</string>
     <string name="button10">+ 10</string>
     <string name="button5">+ 5</string>

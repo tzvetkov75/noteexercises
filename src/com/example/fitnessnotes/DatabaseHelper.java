@@ -119,8 +119,8 @@ public class DatabaseHelper {
 
 		String serie = new String();
 		
-//		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm E dd/MM/yy");
-		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm E ");
+		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm dd/MM/yy");
+//		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm ");
 		Date date= new Date(cursor.getLong(0));
 		String sDate= sdf.format(date); 
 				
@@ -146,11 +146,13 @@ public class DatabaseHelper {
 			
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm,");
 		String temp;
+		int trainingNumber=0;
+		long lastTrainingTime=0;
 				
 		  String eol = System.getProperty("line.separator");
 		  
 	    	
-		  file.write(String.valueOf("date, name, Repetition(Duration), Weight(Difficulty)").getBytes());
+		  file.write(String.valueOf("date, name, Repetition(Duration), Weight(Difficulty), Training Unit(Number)").getBytes());
 		  file.write(eol.getBytes());
 
 			Cursor cursor = database.query(MySQLiteHelper.TABLE_NAME, ALL_COLUMNS,
@@ -168,8 +170,21 @@ public class DatabaseHelper {
 			    file.write(String.valueOf(serie.getRepetition()).getBytes());
 			    file.write(String.valueOf(",").getBytes());
 			    file.write(String.valueOf(serie.getWeight()).getBytes());
+			    
+			    
+			    // Determines the Training unit. If there is more that 3 hours between two following series 
+			    if (serie.getDate().getTime() - lastTrainingTime >  10800000) {
+			    	lastTrainingTime=serie.getDate().getTime();
+			    	trainingNumber++;
+    		    }
+			    
+			    file.write(String.valueOf(",").getBytes());
+			    file.write(String.valueOf(trainingNumber).getBytes());
+			    			    
 			    file.write(eol.getBytes());
 				
+			    
+			    
 				cursor.moveToNext();
 			}
 			

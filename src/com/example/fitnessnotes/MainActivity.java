@@ -42,7 +42,8 @@ public class MainActivity extends Activity {
 	private DatabaseHelper database;
 	private ListView listviewHistory;
 	ArrayAdapter<String> adapter;
-	private boolean showedHistoryHint=false;
+	private boolean showedHistoryHint = false;
+	private int showedAddButtonHint = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class MainActivity extends Activity {
 		edRep = (EditText) findViewById(R.id.editTextRepetitions);
 		edWei = (EditText) findViewById(R.id.exitTextWeight);
 		listviewHistory = (ListView) findViewById(R.id.listViewHistory);
-	
+
 		edRep.setOnTouchListener(new View.OnTouchListener() {
 			public boolean onTouch(View arg0, MotionEvent arg1) {
 				ed = (EditText) arg0;
@@ -68,20 +69,21 @@ public class MainActivity extends Activity {
 			}
 		});
 
-//		This listener hides the soft keybord when there is not focus on EditeText Excercise Name  
-		edName.setOnFocusChangeListener( new View.OnFocusChangeListener() {
-			
+		// This listener hides the soft keybord when there is not focus on
+		// EditeText Excercise Name
+		edName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
-				
-				if(v.getId() == R.id.editExerciese && !hasFocus) {
 
-		            InputMethodManager imm =  (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);			
+				if (v.getId() == R.id.editExerciese && !hasFocus) {
+
+					InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+					imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+				}
 			}
-		}
 		});
-		
+
 		database = new DatabaseHelper(this);
 		database.open();
 		updateHistory();
@@ -155,9 +157,7 @@ public class MainActivity extends Activity {
 
 		new AlertDialog.Builder(this)
 				.setTitle("Delete entry")
-				.setMessage(
-						"Are you sure to delete #" + position + "(" + text
-								+ ")this entry?")
+				.setMessage("Sure to delete this entry? \n" + text)
 
 				.setPositiveButton(android.R.string.yes,
 						new DialogInterface.OnClickListener() {
@@ -233,12 +233,26 @@ public class MainActivity extends Activity {
 				tempInt = 0;
 			}
 
-//			Toast.makeText(this, "set to "+String.valueOf(tempInt) +"+"+ btn.getTag().toString()+"="+
-//						String.valueOf(tempInt + Integer.parseInt(btn.getTag().toString())), Toast.LENGTH_SHORT).show();
+			// The first 5 uses show calculation hint
+			if (showedAddButtonHint < 5) {
+				Toast.makeText(
+						this,
+						"set to "
+								+ String.valueOf(tempInt)
+								+ "+"
+								+ btn.getTag().toString()
+								+ "="
+								+ String.valueOf(tempInt
+										+ Integer.parseInt(btn.getTag()
+												.toString())),
+						Toast.LENGTH_SHORT).show();
+				
+				showedAddButtonHint++;
+			}
+
 			// add the Tag of the button to the current value of the TextEdit
 			tempInt = tempInt + Integer.parseInt(btn.getTag().toString());
 			ed.setText(Integer.toString(tempInt));
-
 
 		}
 
@@ -248,37 +262,40 @@ public class MainActivity extends Activity {
 	public void HandleClickStore(View arg0) {
 
 		if (!TextUtils.isEmpty(edName.getText().toString())) {
-	
+
 			if (TextUtils.isEmpty(edRep.getText().toString())) {
 				edRep.setText("0");
 			}
-			
+
 			if (TextUtils.isEmpty(edWei.getText().toString())) {
 				edWei.setText("0");
 			}
-			
+
 			Serie serie = new Serie(edName.getText().toString(),
 					Integer.parseInt(edRep.getText().toString()),
 					Integer.parseInt(edWei.getText().toString()));
-			
+
 			if (!showedHistoryHint) {
-				
-				Toast.makeText(getApplicationContext(),
-						"Press on the History list to pre-load values! \n or hold long to delete ", Toast.LENGTH_LONG)
-						.show();
-				
-				showedHistoryHint=true;
-				
+
+				Toast.makeText(
+						getApplicationContext(),
+						"Press on the History list to pre-load values! \n or hold long to delete ",
+						Toast.LENGTH_LONG).show();
+
+				showedHistoryHint = true;
+
 			}
-			
+
 			database.storeSerie(serie);
 			updateHistory();
 			edName.setText("");
 			edWei.setText("");
 			edRep.setText("");
-			
+			edRep.requestFocus();
+
 		} else {
-			Toast.makeText(this, "no exercise name! \n type or press on history list",
+			Toast.makeText(this,
+					"no exercise name! \n type or press on history list",
 					Toast.LENGTH_SHORT).show();
 		}
 
